@@ -86,19 +86,20 @@ class Model:
         self._GG = self._G.subgraph(self._tutti)
         for element in self._tutti:
             parziale = [element]
-            self.itera(parziale, element)
+            self.itera(parziale, element, 0)
         stringa = f"Percorso massimo di lunghezza: {self._tot}, e flag:{self._flag}"
         for element in self._soluzione:
             stringa = stringa +f"\n{element._GeneId} - {element._Essential}"
         return stringa
 
-    def itera(self, parziale, partenza):
-        if len(parziale)>self._tot:
+    def itera(self, parziale, partenza, tot):
+        if tot>self._tot:
             self._tot = len(parziale)
             self._soluzione = copy.deepcopy(parziale)
         for element in self._GG.neighbors(partenza):
             if element not in parziale:
                 parziale.append(element)
-                self.itera(parziale, element)
+                tot1 = self._GG[partenza][element]["weight"] + tot
+                self.itera(parziale, element, tot1)
                 parziale.pop()
 
