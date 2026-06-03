@@ -94,7 +94,7 @@ class Model:
 
     def itera(self, parziale, partenza, tot):
         if tot>self._tot:
-            self._tot = len(parziale)
+            self._tot = tot
             self._soluzione = copy.deepcopy(parziale)
         for element in self._GG.neighbors(partenza):
             if element not in parziale:
