@@ -40,6 +40,7 @@ class View(ft.UserControl):
 
         self.btn_analizza_grafo = ft.ElevatedButton(text="Analizza Grafo",
                                            tooltip="Analizza il grafo",
+                                                    disabled=True,
                                            on_click=self._controller.analyze_graph)
 
         self.btn_path = ft.ElevatedButton(text="Cammino",
@@ -68,6 +69,7 @@ class View(ft.UserControl):
                       alignment=ft.MainAxisAlignment.SPACE_EVENLY,
                       spacing=50)
         self._page.controls.append(row2)
+        self._controller.riempi()
         self._page.update()
 
     @property
